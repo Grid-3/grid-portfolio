@@ -865,44 +865,40 @@
 
 <!-- WORK -->
 <section id="work" style="padding-top:40px;">
-  <div class="work-grid">
-    <div class="work-item">
-      <img src="../images/LiX_Advert copy.webp" alt="LiX Pastries n' Chopz">
-      <div class="work-overlay">
-        <div class="work-title">LiX Pastries n' Chopz</div>
-        <div class="work-type">Social Media Design</div>
-      </div>
-    </div>
-    <div class="work-item">
-      <img src="../images/liX_March_2026 copy.webp" alt="LiX March 2026">
-      <div class="work-overlay">
-        <div class="work-title">LiX Pastries n' Chopz</div>
-        <div class="work-type">Monthly Content</div>
-      </div>
-    </div>
-    <div class="work-item">
-      <img src="../images/liX_Shawarma_promo.webp" alt="LiX Shawarma Promo">
-      <div class="work-overlay">
-        <div class="work-title">LiX Pastries n' Chopz</div>
-        <div class="work-type">Promo Design</div>
-      </div>
-    </div>
-    <div class="work-item">
-      <img src="../images/magi's_kitchen.webp" alt="Magi's Kitchen">
-      <div class="work-overlay">
-        <div class="work-title">Magi's Kitchen</div>
-        <div class="work-type">Social Media Design</div>
-      </div>
-    </div>
-    <div class="work-item" style="aspect-ratio: 3/4;">
-      <img src="../images/Dishes_By_Bee.webp" alt="Dishes By Bee">
-      <div class="work-overlay">
-        <div class="work-title">Dishes By Bee</div>
-        <div class="work-type">Flyer Design</div>
-      </div>
-    </div>
-  </div>
+  <div class="work-grid" id="work-grid"></div>
 </section>
+
+<script>
+  fetch('../data/food-brands.json')
+    .then(r => r.json())
+    .then(data => {
+      const grid = document.getElementById('work-grid');
+      grid.innerHTML = data.items.map(it => `
+        <div class="work-item"${it.tall ? ' style="aspect-ratio: 3/4;"' : ''}>
+          <img src="../images/${it.img}" alt="${it.title}">
+          <div class="work-overlay">
+            <div class="work-title">${it.title}</div>
+            <div class="work-type">${it.type}</div>
+          </div>
+        </div>
+      `).join('');
+      document.querySelectorAll('.work-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.1 });
+        obs.observe(el);
+      });
+    });
+</script>
+
 
 <div class="section-divider"></div>
 
