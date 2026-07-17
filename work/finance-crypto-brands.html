@@ -875,7 +875,7 @@
       const grid = document.getElementById('work-grid');
       grid.innerHTML = data.items.map(it => `
         <div class="work-item"${it.tall ? ' style="aspect-ratio: 3/4;"' : ''}>
-          <img src="../images/${it.img}" alt="${it.title}">
+          <img src="${it.img.startsWith('/') ? '..' + it.img : '../images/' + it.img}" alt="${it.title}">
           <div class="work-overlay">
             <div class="work-title">${it.title}</div>
             <div class="work-type">${it.type}</div>
