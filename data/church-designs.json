@@ -1,5 +1,16 @@
 {
   "items": [
-    { "img": "DIGC_GK_2years_Anniversary_Flyer.webp", "title": "DIGC Gidan Kwano 2Yrs Anniversary", "type": "Flyer Design", "tall": true }
+    {
+      "img": "DIGC_GK_2years_Anniversary_Flyer.webp",
+      "title": "DIGC Gidan Kwano 2Yrs Anniversary",
+      "type": "Flyer Design",
+      "tall": true
+    },
+    {
+      "tall": true,
+      "img": "/images/digc_k4_9th_anniversary.webp",
+      "title": "DIGC KUBWA-4 9yrs Anniversary ",
+      "type": "Church Design"
+    }
   ]
 }
