@@ -1,5 +1,16 @@
 {
   "items": [
-    { "img": "gadget_deal_hub_hnw.webp", "title": "Gadget Deals Hub", "type": "Social Media Design", "tall": true }
+    {
+      "img": "gadget_deal_hub_hnw.webp",
+      "title": "Gadget Deals Hub",
+      "type": "Social Media Design",
+      "tall": true
+    },
+    {
+      "tall": false,
+      "img": "/images/bcf_vibecoding_workshop.webp",
+      "title": "Blockchain Club FUTMINNA - VibeCoding workshop",
+      "type": "Social Media Design"
+    }
   ]
 }
