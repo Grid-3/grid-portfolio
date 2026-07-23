@@ -119,12 +119,6 @@
         },
         {
           "tall": false,
-          "img": "/images/bcf_vibecoding_workshop.jpg",
-          "title": "Blockchain Club FUTMinna Vibecoding online workshop",
-          "type": "Social Media Flyer"
-        },
-        {
-          "tall": false,
           "img": "/images/artboard-2.jpg",
           "title": "Blockchain Club FUTMinna ",
           "type": "Logo Design"
@@ -140,6 +134,12 @@
           "img": "/images/artboard-5.jpg",
           "title": "Blockchain Club FUTMinna",
           "type": "Logo"
+        },
+        {
+          "tall": false,
+          "img": "/images/bcf_vibecoding_workshop.jpg",
+          "title": "Blockchain Club FUTMinna Vibecoding online workshop",
+          "type": "Social Media Flyer"
         }
       ]
     }
