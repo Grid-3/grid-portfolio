@@ -116,6 +116,12 @@
           "img": "/images/bcf_vibecoding_workshop.jpg",
           "title": "Blockchain Club FUTMinna Vibecoding online workshop",
           "type": "Social Media Flyer"
+        },
+        {
+          "tall": false,
+          "img": "/images/artboard-1.jpg",
+          "title": "Blockchain Club FUTMinna Main",
+          "type": "Logo Variation"
         }
       ]
     }
