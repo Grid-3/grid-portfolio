@@ -516,6 +516,109 @@
     cursor: pointer;
   }
 
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,5,5,0.96);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox.active { display: flex; }
+
+  .lightbox-img-wrap {
+    max-width: 88vw;
+    max-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lightbox-img-wrap img {
+    max-width: 88vw;
+    max-height: 74vh;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .lightbox-caption {
+    text-align: center;
+    color: var(--white);
+  }
+
+  .lightbox-caption .lb-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .lightbox-caption .lb-type {
+    font-size: 12px;
+    color: var(--grey);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 28px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .lightbox-close:hover { background: rgba(255,255,255,0.18); }
+
+  .lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .lightbox-arrow:hover { background: var(--purple); color: var(--white); }
+  .lightbox-arrow.prev { left: 24px; }
+  .lightbox-arrow.next { right: 24px; }
+
+  .lightbox-close svg,
+  .lightbox-arrow svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (max-width: 768px) {
+    .lightbox-arrow { width: 40px; height: 40px; }
+    .lightbox-arrow.prev { left: 10px; }
+    .lightbox-arrow.next { right: 10px; }
+    .lightbox-close { top: 16px; right: 16px; }
+  }
+
   /* CATEGORY BUTTONS (no images, icon + title only) */
   .category-grid {
     display: grid;
@@ -868,6 +971,26 @@
   <div class="work-grid" id="work-grid"></div>
 </section>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" id="lb-close">
+    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </div>
+  <div class="lightbox-arrow prev" id="lb-prev">
+    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+  </div>
+  <div class="lightbox-arrow next" id="lb-next">
+    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+  </div>
+  <div class="lightbox-img-wrap">
+    <img id="lb-img" src="" alt="">
+    <div class="lightbox-caption">
+      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-type" id="lb-type"></div>
+    </div>
+  </div>
+</div>
+
 <div class="section-divider"></div>
 
 <!-- CONTACT -->
@@ -932,17 +1055,20 @@
       document.getElementById('cat-desc').textContent = cat.items.length + (cat.items.length === 1 ? ' design' : ' designs') + ' in this category.';
 
       const grid = document.getElementById('work-grid');
-      grid.innerHTML = cat.items.map(it => {
-        const src = it.img.startsWith('/') ? '..' + it.img : '../images/' + it.img;
-        return `
-        <div class="work-item"${it.tall ? ' style="aspect-ratio: 3/4;"' : ''}>
-          <img src="${src}" alt="${it.title}">
+      const resolved = cat.items.map(it => ({
+        ...it,
+        src: it.img.startsWith('/') ? '..' + it.img : '../images/' + it.img
+      }));
+
+      grid.innerHTML = resolved.map((it, i) => `
+        <div class="work-item"${it.tall ? ' style="aspect-ratio: 3/4;"' : ''} data-index="${i}">
+          <img src="${it.src}" alt="${it.title}">
           <div class="work-overlay">
             <div class="work-title">${it.title}</div>
             <div class="work-type">${it.type}</div>
           </div>
-        </div>`;
-      }).join('');
+        </div>`
+      ).join('');
 
       document.querySelectorAll('.work-item').forEach(el => {
         el.style.opacity = '0';
@@ -957,6 +1083,46 @@
           });
         }, { threshold: 0.1 });
         obs.observe(el);
+      });
+
+      // LIGHTBOX
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img');
+      const lbTitle = document.getElementById('lb-title');
+      const lbType = document.getElementById('lb-type');
+      let current = 0;
+
+      function showLightbox(i) {
+        current = (i + resolved.length) % resolved.length;
+        const it = resolved[current];
+        lbImg.src = it.src;
+        lbImg.alt = it.title;
+        lbTitle.textContent = it.title;
+        lbType.textContent = it.type;
+        lightbox.classList.add('active');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+      }
+
+      document.querySelectorAll('.work-item[data-index]').forEach(el => {
+        el.addEventListener('click', () => showLightbox(parseInt(el.dataset.index, 10)));
+      });
+
+      document.getElementById('lb-close').addEventListener('click', closeLightbox);
+      document.getElementById('lb-prev').addEventListener('click', (e) => { e.stopPropagation(); showLightbox(current - 1); });
+      document.getElementById('lb-next').addEventListener('click', (e) => { e.stopPropagation(); showLightbox(current + 1); });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showLightbox(current - 1);
+        if (e.key === 'ArrowRight') showLightbox(current + 1);
       });
     });
 </script>
