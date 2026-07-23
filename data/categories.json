@@ -5,11 +5,36 @@
       "name": "Food Brands",
       "icon": "food",
       "items": [
-        { "img": "LiX_Advert copy.webp", "title": "LiX Pastries n' Chopz", "type": "Social Media Design", "tall": false },
-        { "img": "liX_March_2026 copy.webp", "title": "LiX Pastries n' Chopz", "type": "Monthly Content", "tall": false },
-        { "img": "liX_Shawarma_promo.webp", "title": "LiX Pastries n' Chopz", "type": "Promo Design", "tall": false },
-        { "img": "magi's_kitchen.webp", "title": "Magi's Kitchen", "type": "Social Media Design", "tall": false },
-        { "img": "Dishes_By_Bee.webp", "title": "Dishes By Bee", "type": "Flyer Design", "tall": true }
+        {
+          "img": "LiX_Advert copy.webp",
+          "title": "LiX Pastries n' Chopz",
+          "type": "Social Media Design",
+          "tall": false
+        },
+        {
+          "img": "liX_March_2026 copy.webp",
+          "title": "LiX Pastries n' Chopz",
+          "type": "Monthly Content",
+          "tall": false
+        },
+        {
+          "img": "liX_Shawarma_promo.webp",
+          "title": "LiX Pastries n' Chopz",
+          "type": "Promo Design",
+          "tall": false
+        },
+        {
+          "img": "magi's_kitchen.webp",
+          "title": "Magi's Kitchen",
+          "type": "Social Media Design",
+          "tall": false
+        },
+        {
+          "img": "Dishes_By_Bee.webp",
+          "title": "Dishes By Bee",
+          "type": "Flyer Design",
+          "tall": true
+        }
       ]
     },
     {
@@ -17,11 +42,36 @@
       "name": "Finance/Crypto Brands",
       "icon": "finance",
       "items": [
-        { "img": "sera.cx_ad1 copy.webp", "title": "Sera.cx", "type": "Social Media Design", "tall": false },
-        { "img": "Sera2.webp", "title": "Sera.cx", "type": "Social Media Design", "tall": false },
-        { "img": "dave_trade_with_us.webp", "title": "Dave Exchange", "type": "Social Media Design", "tall": false },
-        { "img": "Dave_Ask_For_Tags copy.webp", "title": "Dave Exchange", "type": "Social Media Design", "tall": false },
-        { "img": "Dave_Exchange_Flyer copy.webp", "title": "Dave Exchange", "type": "Social Media Design", "tall": false }
+        {
+          "img": "sera.cx_ad1 copy.webp",
+          "title": "Sera.cx",
+          "type": "Social Media Design",
+          "tall": false
+        },
+        {
+          "img": "Sera2.webp",
+          "title": "Sera.cx",
+          "type": "Social Media Design",
+          "tall": false
+        },
+        {
+          "img": "dave_trade_with_us.webp",
+          "title": "Dave Exchange",
+          "type": "Social Media Design",
+          "tall": false
+        },
+        {
+          "img": "Dave_Ask_For_Tags copy.webp",
+          "title": "Dave Exchange",
+          "type": "Social Media Design",
+          "tall": false
+        },
+        {
+          "img": "Dave_Exchange_Flyer copy.webp",
+          "title": "Dave Exchange",
+          "type": "Social Media Design",
+          "tall": false
+        }
       ]
     },
     {
@@ -29,8 +79,18 @@
       "name": "Church Designs",
       "icon": "church",
       "items": [
-        { "img": "DIGC_GK_2years_Anniversary_Flyer.webp", "title": "DIGC Gidan Kwano 2Yrs Anniversary", "type": "Flyer Design", "tall": true },
-        { "img": "/images/DIGC_K4_9th_Anniversary.webp", "title": "DIGC Kubwa-4 9th Anniversary", "type": "Flyer Design", "tall": true }
+        {
+          "img": "DIGC_GK_2years_Anniversary_Flyer.webp",
+          "title": "DIGC Gidan Kwano 2Yrs Anniversary",
+          "type": "Flyer Design",
+          "tall": true
+        },
+        {
+          "img": "/images/DIGC_K4_9th_Anniversary.webp",
+          "title": "DIGC Kubwa-4 9th Anniversary",
+          "type": "Flyer Design",
+          "tall": true
+        }
       ]
     },
     {
@@ -38,7 +98,25 @@
       "name": "Gadget/Tech Brands",
       "icon": "tech",
       "items": [
-        { "img": "gadget_deal_hub_hnw.webp", "title": "Gadget Deals Hub", "type": "Social Media Design", "tall": true }
+        {
+          "img": "gadget_deal_hub_hnw.webp",
+          "title": "Gadget Deals Hub",
+          "type": "Social Media Design",
+          "tall": true
+        }
+      ]
+    },
+    {
+      "name": "Blockchain Club FUTMinna",
+      "slug": "blockchain-club-futminna",
+      "icon": "tech",
+      "items": [
+        {
+          "tall": false,
+          "img": "/images/bcf_vibecoding_workshop.jpg",
+          "title": "Blockchain Club FUTMinna Vibecoding online workshop",
+          "type": "Social Media Flyer"
+        }
       ]
     }
   ]
