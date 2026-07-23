@@ -1,9 +1,0 @@
-{
-  "items": [
-    { "img": "LiX_Advert copy.webp", "title": "LiX Pastries n' Chopz", "type": "Social Media Design", "tall": false },
-    { "img": "liX_March_2026 copy.webp", "title": "LiX Pastries n' Chopz", "type": "Monthly Content", "tall": false },
-    { "img": "liX_Shawarma_promo.webp", "title": "LiX Pastries n' Chopz", "type": "Promo Design", "tall": false },
-    { "img": "magi's_kitchen.webp", "title": "Magi's Kitchen", "type": "Social Media Design", "tall": false },
-    { "img": "Dishes_By_Bee.webp", "title": "Dishes By Bee", "type": "Flyer Design", "tall": true }
-  ]
-}

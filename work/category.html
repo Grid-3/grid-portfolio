@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gadget/Tech Brands — GRID</title>
+<title>Portfolio — GRID</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -858,47 +858,15 @@
 <!-- PAGE HEADER -->
 <section class="page-header">
   <a href="../index.html#work" class="back-link">← Back to Portfolio</a>
-  <p class="section-label">Portfolio / Gadget & Tech Brands</p>
-  <h1 class="section-heading">GADGET/<br>TECH</h1>
-  <p class="section-note" style="margin:24px auto 0;">Social design for tech and e-commerce brands.</p>
+  <p class="section-label" id="cat-label">Portfolio</p>
+  <h1 class="section-heading" id="cat-heading">LOADING</h1>
+  <p class="section-note" id="cat-desc" style="margin:24px auto 0;"></p>
 </section>
 
 <!-- WORK -->
 <section id="work" style="padding-top:40px;">
   <div class="work-grid" id="work-grid"></div>
 </section>
-
-<script>
-  fetch('../data/gadget-tech-brands.json')
-    .then(r => r.json())
-    .then(data => {
-      const grid = document.getElementById('work-grid');
-      grid.innerHTML = data.items.map(it => `
-        <div class="work-item"${it.tall ? ' style="aspect-ratio: 3/4;"' : ''}>
-          <img src="${it.img.startsWith('/') ? '..' + it.img : '../images/' + it.img}" alt="${it.title}">
-          <div class="work-overlay">
-            <div class="work-title">${it.title}</div>
-            <div class="work-type">${it.type}</div>
-          </div>
-        </div>
-      `).join('');
-      document.querySelectorAll('.work-item').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        const obs = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }
-          });
-        }, { threshold: 0.1 });
-        obs.observe(el);
-      });
-    });
-</script>
-
 
 <div class="section-divider"></div>
 
@@ -946,21 +914,51 @@
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('cat');
 
-  document.querySelectorAll('.work-item, .contact-link').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
+  fetch('../data/categories.json')
+    .then(r => r.json())
+    .then(data => {
+      const cat = data.categories.find(c => c.slug === slug);
+      if (!cat) {
+        document.getElementById('cat-heading').textContent = 'NOT FOUND';
+        document.getElementById('cat-desc').textContent = "This category doesn't exist.";
+        return;
+      }
+      document.title = cat.name + ' — GRID';
+      document.getElementById('cat-label').textContent = 'Portfolio / ' + cat.name;
+      document.getElementById('cat-heading').textContent = cat.name.toUpperCase();
+      document.getElementById('cat-desc').textContent = cat.items.length + (cat.items.length === 1 ? ' design' : ' designs') + ' in this category.';
+
+      const grid = document.getElementById('work-grid');
+      grid.innerHTML = cat.items.map(it => {
+        const src = it.img.startsWith('/') ? '..' + it.img : '../images/' + it.img;
+        return `
+        <div class="work-item"${it.tall ? ' style="aspect-ratio: 3/4;"' : ''}>
+          <img src="${src}" alt="${it.title}">
+          <div class="work-overlay">
+            <div class="work-title">${it.title}</div>
+            <div class="work-type">${it.type}</div>
+          </div>
+        </div>`;
+      }).join('');
+
+      document.querySelectorAll('.work-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.1 });
+        obs.observe(el);
+      });
+    });
 </script>
 
 <a href="https://wa.me/2348135303233" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
@@ -971,29 +969,13 @@
 
 <style>
   .wa-float {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    width: 56px;
-    height: 56px;
-    background: #25D366;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    box-shadow: 0 4px 24px rgba(37,211,102,0.4);
-    transition: all 0.3s;
+    position: fixed; bottom: 32px; right: 32px; width: 56px; height: 56px;
+    background: #25D366; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 999; box-shadow: 0 4px 24px rgba(37,211,102,0.4); transition: all 0.3s;
   }
-  .wa-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 32px rgba(37,211,102,0.6);
-  }
-  .wa-float svg {
-    width: 28px;
-    height: 28px;
-  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.6); }
+  .wa-float svg { width: 28px; height: 28px; }
 </style>
 
 </body>

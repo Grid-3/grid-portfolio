@@ -1,1 +1,5 @@
 /admin/*    /admin/index.html   200
+/work/food-brands.html              /work/category.html?cat=food-brands              301
+/work/finance-crypto-brands.html    /work/category.html?cat=finance-crypto-brands    301
+/work/church-designs.html           /work/category.html?cat=church-designs           301
+/work/gadget-tech-brands.html       /work/category.html?cat=gadget-tech-brands       301

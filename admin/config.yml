@@ -6,70 +6,45 @@ media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "food_brands"
-    label: "Food Brands"
+  - name: "categories"
+    label: "Portfolio Categories"
     files:
-      - file: "data/food-brands.json"
-        label: "Food Brands"
-        name: "food-brands"
+      - file: "data/categories.json"
+        label: "Categories"
+        name: "categories"
         fields:
-          - label: "Designs"
-            name: "items"
+          - label: "Categories"
+            name: "categories"
             widget: "list"
-            summary: "{{title}} — {{type}}"
+            summary: "{{name}}"
             fields:
-              - { label: "Image", name: "img", widget: "image" }
-              - { label: "Title / Client", name: "title", widget: "string" }
-              - { label: "Design Type", name: "type", widget: "string" }
-              - { label: "Tall image (3:4 instead of square)", name: "tall", widget: "boolean", default: false }
-
-  - name: "finance_crypto_brands"
-    label: "Finance/Crypto Brands"
-    files:
-      - file: "data/finance-crypto-brands.json"
-        label: "Finance/Crypto Brands"
-        name: "finance-crypto-brands"
-        fields:
-          - label: "Designs"
-            name: "items"
-            widget: "list"
-            summary: "{{title}} — {{type}}"
-            fields:
-              - { label: "Image", name: "img", widget: "image" }
-              - { label: "Title / Client", name: "title", widget: "string" }
-              - { label: "Design Type", name: "type", widget: "string" }
-              - { label: "Tall image (3:4 instead of square)", name: "tall", widget: "boolean", default: false }
-
-  - name: "church_designs"
-    label: "Church Designs"
-    files:
-      - file: "data/church-designs.json"
-        label: "Church Designs"
-        name: "church-designs"
-        fields:
-          - label: "Designs"
-            name: "items"
-            widget: "list"
-            summary: "{{title}} — {{type}}"
-            fields:
-              - { label: "Image", name: "img", widget: "image" }
-              - { label: "Title / Client", name: "title", widget: "string" }
-              - { label: "Design Type", name: "type", widget: "string" }
-              - { label: "Tall image (3:4 instead of square)", name: "tall", widget: "boolean", default: false }
-
-  - name: "gadget_tech_brands"
-    label: "Gadget/Tech Brands"
-    files:
-      - file: "data/gadget-tech-brands.json"
-        label: "Gadget/Tech Brands"
-        name: "gadget-tech-brands"
-        fields:
-          - label: "Designs"
-            name: "items"
-            widget: "list"
-            summary: "{{title}} — {{type}}"
-            fields:
-              - { label: "Image", name: "img", widget: "image" }
-              - { label: "Title / Client", name: "title", widget: "string" }
-              - { label: "Design Type", name: "type", widget: "string" }
-              - { label: "Tall image (3:4 instead of square)", name: "tall", widget: "boolean", default: false }
+              - label: "Category Name"
+                name: "name"
+                widget: "string"
+                hint: "Shown as the button label on the homepage, e.g. 'Food Brands'"
+              - label: "URL Slug"
+                name: "slug"
+                widget: "string"
+                hint: "Lowercase, no spaces, dashes only — e.g. 'food-brands'. Don't change this after adding designs, or the category's link breaks."
+              - label: "Icon"
+                name: "icon"
+                widget: "select"
+                hint: "Pick whichever fits closest — doesn't have to be literal."
+                options:
+                  - { label: "Food / Fork", value: "food" }
+                  - { label: "Finance / Coin", value: "finance" }
+                  - { label: "Church / Cross", value: "church" }
+                  - { label: "Tech / Chip", value: "tech" }
+                  - { label: "Camera", value: "camera" }
+                  - { label: "Star", value: "star" }
+                  - { label: "Palette / Design", value: "palette" }
+                  - { label: "Tag / Generic", value: "tag" }
+              - label: "Designs"
+                name: "items"
+                widget: "list"
+                summary: "{{title}} — {{type}}"
+                fields:
+                  - { label: "Image", name: "img", widget: "image" }
+                  - { label: "Title / Client", name: "title", widget: "string" }
+                  - { label: "Design Type", name: "type", widget: "string" }
+                  - { label: "Tall image (3:4 instead of square)", name: "tall", widget: "boolean", default: false }
